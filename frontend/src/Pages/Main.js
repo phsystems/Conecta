@@ -37,14 +37,14 @@ export default function Main({match}){
 
 
 
-    async function handleLike(id){
-        await api.post(`/devs/${id}/likes`, null, {
+    async function handleTeach(id){
+        await api.post(`/devs/${id}/Teach`, null, {
             headers: { user: match.params.id},
         })
         setUsers(users.filter(user => user._id !== id)); 
     }
-    async function handleDislike(id){
-        await api.post(`/devs/${id}/dislikes`, null, {
+    async function handleLearn(id){
+        await api.post(`/devs/${id}/Learn`, null, {
             headers: { user: match.params.id},
         })
         setUsers(users.filter(user => user._id !== id)); 
@@ -68,8 +68,8 @@ export default function Main({match}){
                         <p>{user.bio}</p>
                     </footer>
                     <div className = "buttons" >
-                        <button type = "button" onClick={() => handleLike(user._id)}>Like</button>
-                        <button type = "button" onClick={() => handleDislike(user._id)}>Dislike</button>
+                        <button type = "button" onClick={() => handleTeach(user._id)}>Teach</button>
+                        <button type = "button" onClick={() => handleLearn(user._id)}>Learn</button>
                     </div>
                  </li>
                 ))}                   

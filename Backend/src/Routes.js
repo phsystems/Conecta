@@ -1,15 +1,17 @@
 const express = require('express');
 const DevController = require('./controllers/FeedController');
-const LikeController = require('./controllers/TeachController');
-const DislikesController = require('./controllers/LearnController');
+const TeachController = require('./controllers/TeachController');
+const LearnController = require('./controllers/LearnController');
 
 const routes = express.Router();
 
  routes.get('/devs', DevController.index);
  routes.post('/devs', DevController.store); 
  
- routes.post('/devs/:devId/likes', LikeController.store);
- routes.post('/devs/:devId/dislikes', DislikesController.store);
+ routes.post('/devs/:devId/Teach', TeachController.store);
+ routes.post('/devs/:devId/Learn', LearnController.store);
+ routes.post('/devs/:devId/CreateLearn', LearnController.createLearn);
+ 
  module.exports = routes;
 
  //GET, POST, PUT, DELETE 

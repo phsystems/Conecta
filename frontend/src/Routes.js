@@ -12,7 +12,7 @@ export default function Routes(){
         <BrowserRouter>
             <Route path= "/" exact component={Feed} /> 
             <Route path= "/dev/:id" component={Main} />   
-            <Route path="/feed"  component={Feed} /> 
+            <Route path="/login"  component={Login} /> 
             <Route path="/Detail" component={Detail}/>
         </BrowserRouter>
     );

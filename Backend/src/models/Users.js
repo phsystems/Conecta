@@ -10,19 +10,15 @@ const DevSchema = new Schema({
         type: String,
         required: false,
     },
-    likes:[{
+    teach:[{
         type: Schema.Types.ObjectId,
         ref: 'Dev',
     }],
-    dislikes:[{
+    learn:[{
         type: Schema.Types.ObjectId,
         ref: 'Dev',
     }],
-    interesses:[{
-        type: Schema.Types.ObjectId,
-        ref: 'Dev',
-    }],
-    createdAt:{
+      createdAt:{
         type: Date,
         default: Date.now,    
     },

@@ -3,8 +3,8 @@ const Dev  = require('../models/Users');
 module.exports = {
     async store(req, res){
         console.log(req.io, req.connectedUsers);
-        //console.log(req.params.devId);
-        //console.log(req.headers.user);
+        console.log(req.params.devId);
+        console.debug(req.headers.user);
         const { user }  = req.headers;
         const { devId } = req.params;    
 
@@ -18,6 +18,9 @@ module.exports = {
             const loggedSocket = req.connectedUsers[user];
             const targetSocket = req.connectedUsers[devId];
             
+
+            // TODO: Ver Com o Jean !
+
             if (loggedSocket){
                 req.io.to(loggedSocket).emit('match', targetDev);
             }
@@ -31,5 +34,24 @@ module.exports = {
         await loggedDev.save();
         
         return res.json(loggedDev); 
+    },
+
+    async createLearn(req,resp){
+
+        const { user }  = req.headers;
+        const { dev_id,available,interest,description } = req.params;
+        
+        const loggedDev = await Dev.findById(user);
+        
+        if(!loggedDev){ 
+            return res.status(400).json({ error: 'User not logged' });
+        }
+        else{
+            
+            req.io.to(loggedSocket).emit('match',);
+        }
+
+
     }
+         
 };
