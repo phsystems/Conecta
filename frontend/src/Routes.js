@@ -10,7 +10,7 @@ import Detail from './Pages/Detail';
 export default function Routes(){
     return(
         <BrowserRouter>
-            <Route path= "/" exact component={Feed} /> 
+            <Route path= "/" exact component={Login} /> 
             <Route path= "/dev/:id" component={Main} />   
             <Route path="/login"  component={Login} /> 
             <Route path="/Detail" component={Detail}/>

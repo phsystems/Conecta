@@ -36,10 +36,9 @@ module.exports = {
         return res.json(loggedDev); 
     },
 
-    async createLearn(req,resp){
+    async createInterest(req,resp){
 
         const { user }  = req.headers;
-        const { dev_id,available,interest,description } = req.params;
         
         const loggedDev = await Dev.findById(user);
         
@@ -47,11 +46,41 @@ module.exports = {
             return res.status(400).json({ error: 'User not logged' });
         }
         else{
+                try {
+                    const interest = await Interest.create( req.body, req.userId);
+             
+                    return res.send({interest});
+                    
+                } catch (error) {
+                    return res.status(400).send({ error:'Error creating new Interests' });
+                    
+                }
+             
+        };
+    },
+    async deleteInterest(req, res){
+        try {
+            await Interest.findByIdAndRenove(req.params.interestId);
+          return res.send()  
+        } catch (error) {
+           return res.status(400).send({ error:'Error deleting interest' });
             
-            req.io.to(loggedSocket).emit('match',);
         }
+     
+    },
 
-
-    }
+    async listInterestsUser(req, res) {
+        try {
+            const interest = await Interest.findById(req.params.interestId).populate('user');
+          return res.send({interest})  
+        } catch (error) {
+           return res.status(400).send({ error:'Error loading interests' });
+            
+        }
+    },
+    async editInterest(req, res){
+        res.send({user: req.userId})
+     
+     }
          
 };

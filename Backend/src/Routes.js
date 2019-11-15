@@ -7,10 +7,18 @@ const routes = express.Router();
 
  routes.get('/devs', DevController.index);
  routes.post('/devs', DevController.store); 
+ routes.get('/devs/:devId/listInterest',DevController.listInterest);
  
  routes.post('/devs/:devId/Teach', TeachController.store);
  routes.post('/devs/:devId/Learn', LearnController.store);
- routes.post('/devs/:devId/CreateLearn', LearnController.createLearn);
+ routes.get('/devs/:interestId/listInterestsUser', LearnController.listInterestsUser);
+ routes.post('/devs/:interestId/createInterest', LearnController.createInterest);
+ routes.delete('/devs/:interestId/deleteInterest', LearnController.deleteInterest);
+ routes.put('/devs/:interestId/editInterest', LearnController.editInterest);
+ 
+
+
+
  
  module.exports = routes;
 

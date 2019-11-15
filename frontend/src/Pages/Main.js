@@ -18,10 +18,8 @@ export default function Main({match}){
                     user: match.params.id,
                 }
             });
-
             setUsers(response.data);
         }
-
        loadUsers(); 
     }, [match.params.id]);
 
@@ -29,7 +27,6 @@ export default function Main({match}){
         const socket = io.connect('http://localhost:3333', {
             query: {user: match.params.id}
         });
-
         socket.on('match', dev => {
             setConectDev(dev);
         })
