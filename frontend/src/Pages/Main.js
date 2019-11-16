@@ -32,8 +32,6 @@ export default function Main({match}){
         })
     }, [match.params.id]);
 
-
-
     async function handleTeach(id){
         await api.post(`/devs/${id}/Teach`, null, {
             headers: { user: match.params.id},
@@ -44,17 +42,13 @@ export default function Main({match}){
         await api.post(`/devs/${id}/Learn`, null, {
             headers: { user: match.params.id},
         })
-        setUsers(users.filter(user => user._id !== id)); 
-         
+        setUsers(users.filter(user => user._id !== id));          
     }
-
-
     return (
     <div className= "main-container">
         <Link to="/">
         <img src={logo} alt="conecta"/>
         </Link>
-
             { users.length > 0 ? (
                 <ul>   
                     {users.map(user => (
@@ -64,10 +58,6 @@ export default function Main({match}){
                         <strong>{user.name}</strong>
                         <p>{user.bio}</p>
                     </footer>
-                    <div className = "buttons" >
-                        <button type = "button" onClick={() => handleTeach(user._id)}>Teach</button>
-                        <button type = "button" onClick={() => handleLearn(user._id)}>Learn</button>
-                    </div>
                  </li>
                 ))}                   
                 </ul>

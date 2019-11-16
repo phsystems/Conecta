@@ -18,7 +18,6 @@ module.exports = {
         if (targetUser.likes.includes(loggedUser._id)) {
             const loggedSocket = req.connectedUsers[user];
             const targetSocket = req.connectedUsers[devId];
-
             if (loggedSocket) {
                 req.io.to(loggedSocket).emit('match', targetUser);
             }
@@ -26,14 +25,12 @@ module.exports = {
                 req.io.to(targetSocket).emit('match', loggedUser);
             }
         }
-
         loggedUser.likes.push(targetUser._id);
-
+        
         await loggedUser.save();
 
         return res.json(loggedUser);
     },
-
     async createInterest(req, res) {
 
         const { user } = req.headers;
@@ -53,9 +50,7 @@ module.exports = {
             } catch (error) {
                 console.error(error);
                 return res.status(400).send({ error: 'Error creating new Interests' });
-
             }
-
         };
     },
     async deleteInterest(req, res) {
@@ -64,11 +59,8 @@ module.exports = {
             return res.send()
         } catch (error) {
             return res.status(400).send({ error: 'Error deleting interest' });
-
         }
-
     },
-
     async listInterestsUser(req, res) {
         try {
             const { user } = req.headers;
@@ -76,12 +68,9 @@ module.exports = {
             return res.send(interests);
         } catch (error) {
             return res.status(400).send({ error: 'Error loading interests' });
-
         }
     },
     async editInterest(req, res) {
         res.send({ user: req.userId })
-
     }
-
 };

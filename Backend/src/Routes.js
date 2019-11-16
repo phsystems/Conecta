@@ -1,6 +1,5 @@
 const express = require('express');
 const FeedController = require('./controllers/FeedController');
-// const TeachController = require('./controllers/TeachController');
 const InterestsController = require('./controllers/InterestsController');
 
 const routes = express.Router();
