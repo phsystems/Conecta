@@ -1,5 +1,7 @@
-import  React, {useEffect, useState} from 'react';
-import './Feed.css';   
+import React, { useEffect, useState } from 'react';
+import './Feed.css';
+
+import api from '../Services/Api';
 
 import logo from '../Assets/login.png';
 import naruto from '../Assets/naruto.png';
@@ -8,69 +10,42 @@ import neji from '../Assets/neji.jpeg';
 import sakura from '../Assets/sakura.jpeg';
 import Sasuke from '../Assets/Sasuke.jpeg';
 
-export default function Feed(){
-    const [users, setUsers] = useState('');
+
+
+
+export default function Feed() {
+    const [interests, setInterests] = useState('');
+
+    useEffect(() => {
+        async function loadInterests() {
+            const response = await api.get('/listInterests', {
+                headers: {
+                    user: '5dbe1b481dff6417a107538e',
+                }
+            });
+            setInterests(response.data.interests);
+        }
+        loadInterests();
+    });
 
     return (
-    <div className= "feed-container">
-        <img src={logo} alt="conecta"/>   
-            <ul>   
-                 <li>
-                 <img src={naruto} alt=""/>
-                 <footer>
-                     <strong>Naruto</strong>
-                     <p> Quer Ensinar: Java Script Para Você!!</p>
-                 </footer>
-                 <div className = "buttons" >
-                     <button type = "button" >Ensinar</button>
-                     <button type = "button" >Aprender</button>
-                 </div>
-                </li>   
-                <li>
-                 <img src={kakashi} alt=""/>
-                 <footer>
-                     <strong>Kakashi</strong>
-                     <p>Quer Prender: Jutsu de Invocação Com Você</p>
-                 </footer>
-                 <div className = "buttons" >
-                     <button type = "button" >Ensinar</button>
-                     <button type = "button" >Aprender</button>
-                 </div>
-                </li>
-                <li>
-                 <img src={neji} alt=""/>
-                 <footer>
-                     <strong>Neji</strong>
-                     <p>Quer Prender: Pagode Com Você</p>
-                 </footer>
-                 <div className = "buttons" >
-                     <button type = "button" >Ensinar</button>
-                     <button type = "button" >Aprender</button>
-                 </div>
-                </li>
-                <li>
-                 <img src={sakura} alt=""/>
-                 <footer>
-                     <strong>Sakura</strong>
-                     <p>Quer Ensinar: Mandarim Para Você</p>
-                 </footer>
-                 <div className = "buttons" >
-                     <button type = "button" >Ensinar</button>
-                     <button type = "button" >Aprender</button>
-                 </div>
-                </li>
-                <li>
-                 <img src={Sasuke} alt=""/>
-                 <footer>
-                     <strong>Sasuke</strong>
-                     <p>Quer Ensinar: Jutsu Bola de Fogo Para Você !!</p>
-                 </footer>
-                 <div className = "buttons" >
-                     <button type = "button" >Ensinar</button>
-                     <button type = "button" >Aprender</button>
-                 </div>
-                </li>             
-            </ul>        
-    </div>
+        <div className="feed-container" >
+            <img src={logo} alt="conecta" />
+            <ul>
+                {interests && interests.length > 0 ? (interests.map(i => (
+                    <li>
+                        <img src={i.user.avatar} alt="" /> 
+                        <footer>
+                            <strong>{i.user.user}</strong>
+                            <p> {i.description} </p>
+                        </footer>
+                        <div className="buttons" >
+                            <button type="button" >Ensinar</button>
+                            <button type="button" >Aprender</button>
+                        </div>
+                    </li>
+                )) ) : (<div>Fudeu</div>) }
+            </ul>
+        </div>
     )
 }
