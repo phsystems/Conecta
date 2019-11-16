@@ -1,4 +1,4 @@
-const Dev  = require('../models/Users');
+const User  = require('../models/Users');
 
 module.exports = {
     async store(req, res){
@@ -8,32 +8,29 @@ module.exports = {
         const { user }  = req.headers;
         const { devId } = req.params;    
 
-        const loggedDev = await Dev.findById(user);
-        const targetDev = await Dev.findById(devId);
+        const loggedUser = await User.findById(user);
+        const targetUser = await User.findById(devId);
 
-        if (!targetDev){
+        if (!targetUser){
             return res.status(400).json({ error: 'User not exixts' });
         }
-        if (targetDev.likes.includes(loggedDev._id)){
+        if (targetUser.likes.includes(loggedUser._id)){
             const loggedSocket = req.connectedUsers[user];
             const targetSocket = req.connectedUsers[devId];
             
-
-            // TODO: Ver Com o Jean !
-
             if (loggedSocket){
-                req.io.to(loggedSocket).emit('match', targetDev);
+                req.io.to(loggedSocket).emit('match', targetUser);
             }
             if (targetSocket){
-                req.io.to(targetSocket).emit('match', loggedDev);
+                req.io.to(targetSocket).emit('match', loggedUser);
             }
         }
 
-        loggedDev.likes.push(targetDev._id);
+        loggedUser.likes.push(targetUser._id);
 
-        await loggedDev.save();
+        await loggedUser.save();
         
-        return res.json(loggedDev); 
+        return res.json(loggedUser); 
     },
 
     async createInterest(req,resp){

@@ -13,6 +13,7 @@ const InterestSchema = new Schema({
         type: String,
         require: true,
     },
+    TypeInterest: Boolean,
     user:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Dev',

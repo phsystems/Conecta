@@ -9,9 +9,8 @@ const routes = express.Router();
  routes.post('/devs', FeedController.store); 
  routes.get('/listInterest',FeedController.listInterest);
  
- routes.post('/devs/:devId/Teach', TeachController.store);
- routes.post('/devs/:devId/Learn', InterestsController.store);
- 
+ routes.post('/devs/:devId/', InterestsController.store);
+
  routes.get('/devs/:interestId/listInterestsUser', InterestsController.listInterestsUser);
  routes.post('/devs/:interestId/createInterest', InterestsController.createInterest);
  routes.delete('/devs/:interestId/deleteInterest', InterestsController.deleteInterest);
