@@ -14,6 +14,7 @@ export default function Routes(){
             <Route path= "/dev/:id" component={Main} />   
             <Route path="/login"  component={Login} /> 
             <Route path="/Detail" component={Detail}/>
+            <Route path="/Feed" component={Feed}/>
         </BrowserRouter>
     );
 }
