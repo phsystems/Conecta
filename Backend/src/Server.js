@@ -19,7 +19,7 @@
  
  });  
 
- mongoose.connect('mongodb+srv://conecta:conecta@cluster0-k2xur.mongodb.net/bdconecta?retryWrites=true&w=majority',{
+ mongoose.connect('mongodb+srv://dbconecta:dbconecta@cluster0-5uixx.mongodb.net/dbconecta?retryWrites=true&w=majority',{
       useUnifiedTopology: true,
       useNewUrlParser: true   
  });

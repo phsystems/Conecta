@@ -9,7 +9,7 @@ const routes = express.Router();
  routes.get('/listInterests',FeedController.listInterest);
 
  routes.post('/devs/interests', InterestsController.createInterest);
- routes.get('/devs/interests', InterestsController.listInterestsUser);
+ routes.get('/devs/detailsUser/:userId', InterestsController.userData);
  routes.get('/devs/interests/:interestId', InterestsController.listInterestsUser); 
  routes.delete('/devs/interests/:interestId', InterestsController.deleteInterest);
  routes.put('/devs/interests/:interestId', InterestsController.editInterest);

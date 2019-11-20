@@ -19,6 +19,7 @@ export default function Main({match}){
                 }
             });
             setUsers(response.data);
+            console.log(response)
         }
        loadUsers(); 
     }, [match.params.id]);

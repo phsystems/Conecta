@@ -29,7 +29,7 @@ export default function Feed({match}) {
                         <img src={i.user.avatar} alt="" /> 
                         <footer>
                             <strong>{i.user.user}</strong>
-                            <p>Você quer {i.TypeInterest != true ? `Ensinar` : `Aprender` } {i.interest} </p>
+                            <p>Você quer {i.TypeInterest !== true ? `Ensinar` : `Aprender` } {i.interest} </p>
                         </footer>
                         <div className="buttons" >
                             <button type="button" >Ensinar</button>

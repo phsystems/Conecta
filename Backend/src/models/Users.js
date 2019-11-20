@@ -5,20 +5,15 @@ const DevSchema = new Schema({
         type: String,
         required: true,     
     },
+    name:{
+        type:String,
+    },
     bio: String,
     avatar:{
         type: String,
         required: false,
     },
-    teach:[{
-        type: Schema.Types.ObjectId,
-        ref: 'Dev',
-    }],
-    learn:[{
-        type: Schema.Types.ObjectId,
-        ref: 'Dev',
-    }],
-      createdAt:{
+    createdAt:{
         type: Date,
         default: Date.now,    
     },

@@ -8,7 +8,7 @@ module.exports = {
         console.debug(req.headers.user);
         const { user } = req.headers;
         const { devId } = req.params;
-
+        console.log(user)
         const loggedUser = await User.findById(user);
         const targetUser = await User.findById(devId);
 
@@ -34,7 +34,7 @@ module.exports = {
     async createInterest(req, res) {
 
         const { user } = req.headers;
-
+        
         const loggedDev = await User.findById(user);
 
         if (!loggedDev) {
@@ -63,8 +63,8 @@ module.exports = {
     },
     async listInterestsUser(req, res) {
         try {
-            const { user } = req.headers;
-            const interests = await Interests.find({user: user}).populate('user');
+            const { interestId } = req.params;
+            const interests = await Interests.find({user: interestId}).populate('user');
             return res.send(interests);
         } catch (error) {
             return res.status(400).send({ error: 'Error loading interests' });
@@ -72,5 +72,20 @@ module.exports = {
     },
     async editInterest(req, res) {
         res.send({ user: req.userId })
+    },
+    
+    async userData(req, res) {
+        try {
+
+            console.log(req.params)
+            const { userId } = req.params;
+
+            const user = await User.findById(userId);
+ console.log(user);
+            return res.send(user);
+
+        } catch (error){
+            return res.status(400).send({ error: 'Error loading User data' });
+        }
     }
 };
