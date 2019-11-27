@@ -1,4 +1,4 @@
-.login-container {
+/* .login-container {
     height: 100%;
     display: flex;
     justify-content: center;
@@ -32,4 +32,14 @@
     color: #FFF;
     font-weight: bold;
     cursor: pointer;
+} */
+
+
+.bckgrnd-principal{
+    background-image: url("/frontend/src/Assets/Background.png");
+}
+
+.pannel-login{
+ width: 400px;
+ height: 400px;
 }
