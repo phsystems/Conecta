@@ -7,7 +7,9 @@ import api from '../Services/Api'
 import logo from '../Assets/login.png';
 import conected from '../Assets/eita.png';
 
+
 export default function Main({match}){
+    
     const [users, setUsers] = useState([]);
     const [conectDev, setConectDev] = useState(null);
 
@@ -47,7 +49,9 @@ export default function Main({match}){
     }
     return (
     <div className= "main-container">
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
         <Link to="/">
+            
         <img src={logo} alt="conecta"/>
         </Link>
             { users.length > 0 ? (

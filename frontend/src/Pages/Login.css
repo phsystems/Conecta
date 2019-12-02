@@ -35,11 +35,7 @@
 } */
 
 
-.bckgrnd-principal{
-    background: url("../Assets/Background.png") no-repeat center center fixed;
-    background-size: cover;
-    
-}
+
 .login__pannel{
     border-radius: 10px;
     padding:40px;  

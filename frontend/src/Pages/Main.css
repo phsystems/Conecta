@@ -118,3 +118,13 @@
 
  }
 
+
+ .bckgrnd-principal{
+    background: url("../Assets/Background.png") no-repeat center center fixed;
+    background-size: cover;
+    
+}
+.feed__container{
+    background: black;
+    opacity: 85%;
+}
