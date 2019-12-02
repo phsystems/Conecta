@@ -3,12 +3,12 @@ import './Login.css';
 
 import api from '../Services/Api';
 
-import logo from '../Assets/Logotipo.png';
+import logo from '../Assets/logo.png';
 import CadastroInteresse from './CadastroInteresse';
 
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
-   
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -17,35 +17,38 @@ export default function Login({ history }) {
         });
         const { _id } = response.data;
         const _storage = window.localStorage;
-        _storage.setItem('id',_id);
+        _storage.setItem('id', _id);
 
         history.push(`/dev/${_id}`);
 
-    
+
     }
     return (
         <div className="row h-100 align-items-center bckgrnd-principal">
-            <div className="col-md-6 offset-3 pannel-login bg-danger " >
-                <form onSubmit={handleSubmit}>
-                   <div className="row">
-            <div className="col-md-12 justify-content-center">
+            <div className="col-12 d-flex justify-content-center ">
+                <div className="row login__pannel">
+                        <div className="col-12">
 
-                       <img src={logo} alt="conecta" />
+                            <img src={logo} alt="conecta" className="d-block login__logo" />
+                        </div>
+                    <form className="col-12" onSubmit={handleSubmit}>
+
+                        <div className="form-group d-flex justify-content-center">
+
+                            <input
+                                placeholder="Digite seu usuario no Github"
+                                value={username} className="form-control login__input"
+                                onChange={e => setUsername(e.target.value)}
+                            />
+                        </div>
+                        <div className="col-md-12 form-group d-flex justify-content-center">
+
+                            <button className="login__button form-control" type="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
-            <div className="col-md-12">
-
-                    <input
-                        placeholder="Digite seu usuario no Github"
-                        value={username}
-                        onChange={e => setUsername(e.target.value)}
-                    />
-            </div>
-                       </div> 
-                    <button type="submit">Enviar</button>
-                </form>
-            </div>
-           
         </div>
     );
 }
