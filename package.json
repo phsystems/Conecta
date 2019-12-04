@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "body-parser": "^1.19.0",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "react-bootstrap": "^1.0.0-beta.16"
   }
 }
+
