@@ -1,0 +1,32 @@
+.cadastro__ensinar{
+    
+    width: 200px;
+    border-radius: 10px 0px 0px 10px;
+    background: #3BDFBB;
+    border: none;
+    padding: 8px;
+}
+.cadastro__aprender{
+    width: 200px;
+    border-radius: 0px 10px 10px 00px;
+    background: #DF5B3B;
+    border: none;
+    padding: 8px;
+}
+
+.cadastro__aprender--ACTIVE{
+    width: 200px;
+    border-radius: 0px 10px 10px 00px;
+    background: #DF5B3B;
+    border: 2px solid rgb(221, 83, 49) ;
+    padding: 30px;
+}
+
+.cadastro__ensinar--ACTIVE{
+    width: 200px;
+    border-radius: 0px 10px 10px 00px;
+    background: #3BDFBB;
+    border: 2px solid rgb(221, 83, 49) ;
+    padding: 30px;
+}
+
