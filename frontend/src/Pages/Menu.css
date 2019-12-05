@@ -1,7 +1,14 @@
-.menu__icon{
- position: absolute;
- right: 10px;
- top: 10px;
- font-size: 25px;
- cursor: pointer;
+.menu__icon {
+  background: transparent !important;
+  border: none;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 25px;
+  cursor: pointer;
 }
+
+.menu__icon:hover {
+    background: transparent !important;
+    border:0.5px solid white !important;
+     }

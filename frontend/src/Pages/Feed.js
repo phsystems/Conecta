@@ -23,9 +23,7 @@ export default function Feed({ match }) {
     return (
         <div className="bckgrnd-principal position-relative">
             <div className="container feed__container">
-                <Menu>
-
-                </Menu>
+                <Menu></Menu>
                 <div className="feed-container">
                     <img src={logo} alt="conecta" />
                     <div className="row">
@@ -44,7 +42,7 @@ export default function Feed({ match }) {
                         {interests && interests.length > 0 ? (interests.map(i => (
                             <li>
                                 <div className="row feed__interest">
-                                    <div className="col-md-3 h-100 align-middle feed__perfil-img">
+                                    <div className="col-md-3 h-100 align-middle feed__perfil-img justify-content-center">
                                         <img className="w-100 h-100 rounded-circle" src={i.user.avatar} alt="" />
                                     </div>
                                     <div className="col-md-9">

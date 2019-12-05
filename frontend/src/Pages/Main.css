@@ -1,3 +1,23 @@
+body{
+    /* font-family: 'colibri'; */
+    font-size: 18px;
+
+}
+body a{
+    color: black;
+}
+body a:hover{
+    text-decoration: underline;
+    color: black;
+    
+    
+}
+.p-link:focus{
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
 .main-container {
     max-width: 980px;
     margin: 0 auto;
@@ -125,6 +145,28 @@
     
 }
 .feed__container{
-    background: black;
-    opacity: 85%;
+    background: rgba(0, 0, 0, 0.8)
+}
+.menu__icon {
+  background: transparent !important;
+  border:0.5px solid white !important;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.menu__icon:hover {
+    background: white !important;
+    color:black !important;
+    border:0.5px solid white !important;
+     }
+
+     button:focus{
+         outline: none;
+     }
+
+.list-group{
+    color: black !important;
 }

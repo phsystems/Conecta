@@ -1,32 +1,58 @@
-.cadastro__ensinar{
+.cadastro__ensinar {
+  width: 200px;
+  border-radius: 10px 0px 0px 10px;
+  background: #3bdfbb;
+  border: none;
+  padding: 8px;
+   transition: 0,4s;
+}
+.cadastro__aprender {
+  width: 200px;
+  border-radius: 0px 10px 10px 00px;
+  background: #df5b3b;
+  border: none;
+  padding: 8px;
+  transition: 0,4s;
+}
+
+.cadastro__aprender--ACTIVE {
+
+  color: white;
+ 
+}
+
+.cadastro__ensinar--ACTIVE {
+
+  color: white;
+}
+
+
+.cadastro__button{
+    width: 300px;
+    padding: 10px;
+    background:#3BDFBB;
+    border:3px solid #3BDFBB;
+    border-radius:10px;
+    color: white;
+
+}
+.cadastro__button:hover{
+    width: 300px;
+    padding: 10px;
+    background:rgb(34, 165, 136);
+    border:3px solid #3BDFBB;
+    border-radius:10px;
+    color: white;
+
+}
+
+@media (max-width: 800px) {
     
-    width: 200px;
-    border-radius: 10px 0px 0px 10px;
-    background: #3BDFBB;
-    border: none;
-    padding: 8px;
+    .cadastro__aprender{
+        border-radius: 0px 00px 10px 10px;
+        
+    }
+    .cadastro__ensinar{
+        border-radius: 10px 10px 0px 0px;
+    }
 }
-.cadastro__aprender{
-    width: 200px;
-    border-radius: 0px 10px 10px 00px;
-    background: #DF5B3B;
-    border: none;
-    padding: 8px;
-}
-
-.cadastro__aprender--ACTIVE{
-    width: 200px;
-    border-radius: 0px 10px 10px 00px;
-    background: #DF5B3B;
-    border: 2px solid rgb(221, 83, 49) ;
-    padding: 30px;
-}
-
-.cadastro__ensinar--ACTIVE{
-    width: 200px;
-    border-radius: 0px 10px 10px 00px;
-    background: #3BDFBB;
-    border: 2px solid rgb(221, 83, 49) ;
-    padding: 30px;
-}
-

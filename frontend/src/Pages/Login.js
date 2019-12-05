@@ -18,19 +18,22 @@ export default function Login({ history }) {
         const { _id } = response.data;
         const _storage = window.localStorage;
         _storage.setItem('id', _id);
-
-        history.push(`/dev/${_id}`);
+        if (!!_storage.getItem('id'))
+            history.push(`/feed/` + _storage.getItem('id'));
+        else {
+            history.push(`/feed/`);
+        }
 
 
     }
     return (
-        <div className="row h-100 align-items-center bckgrnd-principal">
+        <div className="row h-100 w-100 align-items-center bckgrnd-principal">
             <div className="col-12 d-flex justify-content-center ">
                 <div className="row login__pannel">
-                        <div className="col-12">
+                    <div className="col-12">
 
-                            <img src={logo} alt="conecta" className="d-block login__logo" />
-                        </div>
+                        <img src={logo} alt="conecta" className="d-block login__logo" />
+                    </div>
                     <form className="col-12" onSubmit={handleSubmit}>
 
                         <div className="form-group d-flex justify-content-center">
