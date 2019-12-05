@@ -3,6 +3,7 @@ import './cadastro-interesse.css';
 import api from '../Services/Api';
 import { Dropdown } from 'primereact/dropdown';
 import Col from 'react-bootstrap/Col'
+import Menu from './Menu';
 import { InputSwitch } from 'primereact/inputswitch';
 
 import { Form, Button, FormGroup, FormControl, ControlLabel, Container } from "react-bootstrap";
@@ -23,12 +24,8 @@ export default function CadastroInteresse({ CreateInterest }) {
         { label: 'Sabado', value: 'Sab' },
         { label: 'Domingo', value: 'Dom' }
     ];
-    let variavel;
-    let Interesse
-    useEffect(() => {
 
-        variavel = WeekInterest;
-        console.debug(variavel);
+    useEffect(() => {
     }, [WeekInterest]);
 
     async function setaInteresse(e) {
@@ -36,9 +33,6 @@ export default function CadastroInteresse({ CreateInterest }) {
 
     };
     useEffect(() => {
-
-         Interesse = Interest;
-        console.debug(variavel);
     }, [Interest]);
 
     async function handleSubmit(e) {
@@ -56,62 +50,77 @@ export default function CadastroInteresse({ CreateInterest }) {
             }
         });
 
-       
+
         const { _id } = response.data;
         CreateInterest.push(`/dev/${_id}`);
         return false;
     }
 
     return (
-        <Container>
-            <div className="row">
-                <div className="col-12">
-                    <h1>Cadastro de Interesses</h1>
-                    <button value="true" className={Interesse ? 'cadastro_ensinar--ACTIVE' : 'cadastro__ensinar'} onClick={(e)=>{setaInteresse(e)}}>
-                        <i className=" fa fa-graduation-cap" ></i>
-    <span>Ensinar{Interesse}</span>
-                    </button>
-                    <button  value="false" className={!Interesse ? 'cadastro_aprender--ACTIVE' : 'cadastro__aprender'} onClick={(e)=>{setaInteresse(e)}}>
-                        <i className="fa fa-eraser"></i>
-                        <span>Aprender</span>
-                    </button>
+        <div className="bckgrnd-principal position-relative h-100">
+            <div className="container feed__container h-100">
+                <Menu>
+
+                </Menu>
+                <div className="feed-container text-white">
+                    <div className="row">
+                        <div className="col-12 text-white">
+                            <h1 className=" p-3">Cadastro de Interesses</h1>
+                            <h5 className="p-3">Qual seu interesse?</h5>
+                            {/* <button value="true" className={Interest ? 'cadastro__ensinar--ACTIVE' : 'cadastro__ensinar'} onClick={(e)=>{setInterest(true)}}> */}
+                            <button value="true" className={`cadastro__ensinar ${Interest ? 'cadastro__ensinar--ACTIVE' : ''}`} onClick={(e) => { setInterest(true) }}>
+                                <i className=" fa fa-graduation-cap" ></i>
+                                <span>Ensinar{Interest}</span>
+                            </button>
+                            <button value="false" className={`cadastro__aprender ${!Interest ? 'cadastro__aprender--ACTIVE' : ''}`} onClick={(e) => { setInterest(false) }}>
+                                <i className="fa fa-eraser"></i>
+                                <span>Aprender</span>
+                            </button>
+                        </div>
+                        <Form onSubmit={handleSubmit} className=" col-12 p-3">
+                            <Form-row>
+
+                                <Form.Group className="p-4" as={Col} md="12">
+                                    <Form.Label>{`Tenho interesse em  ${Interest ? 'Ensinar' : 'Aprender'}`}</Form.Label>
+                                    <Form.Control
+                                        required
+                                        name="interesse"
+                                        type="text"
+                                        placeholder={Interest ? 'Exp.:Matemática, História, Programação' : 'Algebra, Futebol, JavaScript...'}
+                                        defaultValue="" />
+                                </Form.Group>
+                                <Form.Group   className="p-4" as={Col} md="12" controlId="weekInterest">
+                                    <Form.Label>Disponibilidade</Form.Label>
+                                    <Form.Control as="select" name="disponibilidade" >
+                                        <option value="seg">Segunda-feira</option>
+                                        <option value='ter'>Terça-feira</option>
+                                        <option value='qua'>Quarta-feira</option>
+                                        <option value='qui'>Quinta-feira</option>
+                                        <option value='sex'>Sexta-feira</option>
+                                        <option value='sab'>Sábado</option>
+                                        <option value='dom'>Domingo</option>
+                                    </Form.Control>
+                                </Form.Group>
+                                <Form.Group    className="p-4" as={Col} md="12">
+                                    <Form.Label>Descrição</Form.Label>
+                                    <Form.Control
+                                        as='textarea'
+                                        name="descricao"
+                                        required
+                                        type="text"
+                                        placeholder={Interest ? 'Exp: Desejo ensinar os alunos do curso de sistemas a programar na linguagem JavaScript.' : 'Exp: Desejo aprender a resolver problemas matemáticos com equações de segundo grau.'}
+                                        defaultValue="" />
+                                </Form.Group>
+
+
+                                <button className='cadastro__button ' type="submit">Cadastrar</button>
+
+                            </Form-row>
+                        </Form>
+                    </div>
                 </div>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group as={Col} md="12">
-                        <Form.Label>Interesse</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="Interest Title"
-                            defaultValue="" />
-                    </Form.Group>
-                    <Form.Group as={Col} md="12" controlId="weekInterest">
-                        <Form.Label>Disponibilidade</Form.Label>
-                        {/* <Form.Control
-                    required
-                    type="text"
-                    placeholder="Interest"
-                defaultValue="" /> */}
-                        <Dropdown
-                            className="form-control"
-                            value={WeekInterest}
-                            options={weekdays}
-                            onChange={(e) => { setWeekInterest(e.value) }}
-                            placeholder="Selecione o dia que está disponível" />
-                    </Form.Group>
-                    <Form.Group as={Col} md="12">
-                        <Form.Label>Description</Form.Label>
-                        <Form.Control
-                            as='textarea'
-                            required
-                            type="text"
-                            placeholder="Description"
-                            defaultValue="" />
-                    </Form.Group>
-                    <Button variant="success" type="submit">Enviar</Button>
-                </Form>
-            </div>
-        </Container>
+            </div >
+        </div>
     );
 
 
