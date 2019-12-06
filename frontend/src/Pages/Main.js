@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { Link } from 'react-router-dom';
 import './Main.css';
+import Menu from './Menu';
 
 import api from '../Services/Api'
 import logo from '../Assets/login.png';
@@ -10,43 +11,6 @@ import conected from '../Assets/eita.png';
 
 export default function Main({ match }) {
 
-    const [users, setUsers] = useState([]);
-    const [conectDev, setConectDev] = useState(null);
-
-    useEffect(() => {
-        async function loadUsers() {
-            const response = await api.get('./devs', {
-                headers: {
-                    user: match.params.id,
-                }
-            });
-            setUsers(response.data);
-            console.log(response)
-        }
-        loadUsers();
-    }, [match.params.id]);
-
-    useEffect(() => {
-        const socket = io.connect('http://localhost:3333', {
-            query: { user: match.params.id }
-        });
-        socket.on('match', dev => {
-            setConectDev(dev);
-        })
-    }, [match.params.id]);
-
-    async function handleTeach(id) {
-        await api.post(`/devs/${id}/Teach`, null, {
-            headers: { user: match.params.id },
-        })
-        setUsers(users.filter(user => user._id !== id));
-    }
-    async function handleLearn(id) {
-        await api.post(`/devs/${id}/Learn`, null, {
-            headers: { user: match.params.id },
-        })
-        setUsers(users.filter(user => user._id !== id));
-    }
     return (
         <html lang="en">
             <head>
@@ -56,7 +20,14 @@ export default function Main({ match }) {
                 <title>Document</title>
             </head>
             <body>
-                <div className="main-container">
+                <div className="bckgrnd-principal position-relative h-100">
+                    <div className="container feed__container">
+                        <Menu></Menu>
+                        <div className="feed-container text-white">
+                            <div className="col-12">
+                                <h1>Work in progress..</h1>
+                            </div>
+                            {/* <div className="main-container">
                     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"></link>
                     <Link to="/">
 
@@ -88,8 +59,12 @@ export default function Main({ match }) {
                             <button type="button" onClick={() => setConectDev(null)} >Fechar</button>
                         </div>
                     )}
+                </div> */}
+                        </div>
+                    </div>
                 </div>
+
             </body>
-        </html>  
+        </html>
     )
 }

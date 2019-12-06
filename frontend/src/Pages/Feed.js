@@ -30,8 +30,8 @@ export default function Feed({ match }) {
         loadInterests();
     }, [match.params.id,user]);
     return (
-        <div className="bckgrnd-principal position-relative">
-            <div className="container feed__container">
+        <div className="bckgrnd-principal position-relative h-100">
+            <div className="container feed__container h-100">
                 <Menu></Menu>
                 <div className="feed-container">
                     <img src={logo} alt="conecta" />

@@ -24,7 +24,7 @@ export default class Menu extends Component {
                 <Sidebar visible={this.state.visible} position="right" className="ui-sidebar-md" onHide={(e) => this.setState({ visible: false })}>
                     <div className="row pt-2">
                         <div class="list-group list-group-flush">
-                            <a href={'/main'} class="list-group-item">Perfil</a>
+                            <a href={'/profile'} class="list-group-item">Perfil</a>
                             <a href={'/cadastro'} class="list-group-item">Cadastro de Interesses</a>
                             <a href={'/feed/'+this.idUser} class="list-group-item">Feed de Interesses</a>
                             <a href={'/login'} class="list-group-item">Sair</a>
