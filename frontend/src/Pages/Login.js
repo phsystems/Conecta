@@ -18,6 +18,7 @@ export default function Login({ history }) {
         const { _id } = response.data;
         const _storage = window.localStorage;
         _storage.setItem('id', _id);
+        _storage.setItem('user', username);
         if (!!_storage.getItem('id'))
             history.push(`/feed/` + _storage.getItem('id'));
         else {

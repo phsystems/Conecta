@@ -71,7 +71,13 @@ module.exports = {
         }
     },
     async editInterest(req, res) {
-        res.send({ user: req.userId })
+
+        const  {interestId,user} = req.body
+        const interest = await Interests.update({_id:interestId},{interestUser:user});  
+        
+        
+        res.send( await Interests.findById(interestId));
+   
     },
     
     async userData(req, res) {

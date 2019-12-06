@@ -7,19 +7,28 @@ import logo from '../Assets/logo.png';
 
 export default function Feed({ match }) {
     const [interests, setInterests] = useState('');
+    const [user, setUser] = useState('');
+
+    
 
     useEffect(() => {
+        if(!!user)
+        api.put('/connectedInterest', {  interestId: user.id, user: user.user }).then(x=>loadInterests());
+
         async function loadInterests() {
+
             const response = await api.get('/listInterests', {
                 headers: {
                     user: match.params.id,
                     /* user: '5dbe1b481dff6417a107538e',*/
                 }
             });
-            setInterests(response.data.interests);
+
+
+            setInterests(response.data.interests.filter(interest =>  interest.interestUser ===null && interest.user.user.toUpperCase() !== window.localStorage.getItem('user').toUpperCase()));
         }
         loadInterests();
-    }, [match.params.id]);
+    }, [match.params.id,user]);
     return (
         <div className="bckgrnd-principal position-relative">
             <div className="container feed__container">
@@ -28,11 +37,11 @@ export default function Feed({ match }) {
                     <img src={logo} alt="conecta" />
                     <div className="row">
                         <div className="col-12 d-flex p-5 justify-content-center form-group">
-                            <input type="form-control" className="bg-white feed__search-input" placeholder="Busque por seu interesse..."/>
+                            <input type="form-control" className="bg-white feed__search-input" placeholder="Busque por seu interesse..." />
                             <div className="feed__search-icon">
                                 <button className="btn">
                                     <i class="fa fa-search " aria-hidden="true"></i>
-                                    </button>
+                                </button>
                             </div>
                         </div>
 
@@ -52,10 +61,10 @@ export default function Feed({ match }) {
                                         <p className="feed__user-description m-3">
                                             {i.description}
                                         </p>
-                                        <button type="submit" className={`w-100 btn m-3 ${i.TypeInterest ? 'feed__button-aprender' : 'feed__button-ensinar'}`} >
-                                            <i className={`m-1 ${i.TypeInterest ? 'fa fa-eraser' : 'fa fa-graduation-cap'}`}></i>
-                           
-                                            {i.TypeInterest !== true ? `Ensinar` : `Aprender`}
+                                        <button type="submit" onClick={() => setUser({ user: window.localStorage.getItem('id'), id: i._id })} className={`w-100 btn m-3 ${!i.TypeInterest ? 'feed__button-aprender' : 'feed__button-ensinar'}`} >
+                                            <i className={`m-1 ${!i.TypeInterest ? 'fa fa-eraser' : 'fa fa-graduation-cap'}`}></i>
+
+                                            {!i.TypeInterest !== true ? `Ensinar` : `Aprender`}
                                         </button>
                                     </div>
                                     {/* <div className="buttons col-md-12" >                                   
@@ -63,7 +72,7 @@ export default function Feed({ match }) {
                                     </div> */}
                                 </div>
                             </li>
-                        ))) : (<div>Fudeu</div>)}
+                        ))) : (<div><h1 className="text-white">Não há nenhum interesse registrado no momento... </h1></div>)}
                     </ul>
                 </div>
             </div>

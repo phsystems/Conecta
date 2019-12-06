@@ -19,6 +19,10 @@ const InterestSchema = new Schema({
         ref: 'Dev',
         require: true,
     },
+    interestUser:{
+        type:Schema.Types.ObjectId,
+        ref:'Dev',
+    },
         createdAt:{
         type: Date,
         default: Date.now,    

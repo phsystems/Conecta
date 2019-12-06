@@ -12,7 +12,8 @@ const routes = express.Router();
  routes.get('/devs/detailsUser/:userId', InterestsController.userData);
  routes.get('/devs/interests/:interestId', InterestsController.listInterestsUser); 
  routes.delete('/devs/interests/:interestId', InterestsController.deleteInterest);
- routes.put('/devs/interests/:interestId', InterestsController.editInterest);
+//  routes.put('/devs/interests/:interestId', InterestsController.editInterest);
+ routes.put('/connectedInterest', InterestsController.editInterest);
  
 
 
