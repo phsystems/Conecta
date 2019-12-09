@@ -23,11 +23,11 @@ export default class Menu extends Component {
             <>
                 <Sidebar visible={this.state.visible} position="right" className="ui-sidebar-md" onHide={(e) => this.setState({ visible: false })}>
                     <div className="row pt-2">
-                        <div class="list-group list-group-flush">
-                            <a href={'/profile'} class="list-group-item">Perfil</a>
-                            <a href={'/cadastro'} class="list-group-item">Cadastro de Interesses</a>
-                            <a href={'/feed/'+this.idUser} class="list-group-item">Feed de Interesses</a>
-                            <a href={'/login'} class="list-group-item">Sair</a>
+                        <div className="list-group list-group-flush">
+                            <a href={'/profile'} className="list-group-item">Perfil</a>
+                            <a href={'/cadastro'} className="list-group-item">Cadastro de Interesses</a>
+                            <a href={'/feed/'+this.idUser} className="list-group-item">Feed de Interesses</a>
+                            <a href={'/login'} className="list-group-item">Sair</a>
                          
                         </div>
                     </div>

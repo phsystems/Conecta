@@ -55,8 +55,8 @@ module.exports = {
     },
     async deleteInterest(req, res) {
         try {
-            await Interests.findByIdAndRenove(req.params.interestId);
-            return res.send()
+            await Interests.findByIdAndRemove(req.params.interestId);
+            return res.send({mensagem:'Removido com sucesso !'})
         } catch (error) {
             return res.status(400).send({ error: 'Error deleting interest' });
         }
@@ -87,7 +87,7 @@ module.exports = {
             const { userId } = req.params;
 
             const user = await User.findById(userId);
- console.log(user);
+            console.log(user);
             return res.send(user);
 
         } catch (error){

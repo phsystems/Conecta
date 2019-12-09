@@ -4,6 +4,7 @@ import './cadastro-interesse.css';
 import api from '../Services/Api';
 import Col from 'react-bootstrap/Col'
 import Menu from './Menu';
+import {Growl} from 'primereact/growl';
 
 import { Form } from "react-bootstrap";
 
@@ -11,8 +12,9 @@ import { Form } from "react-bootstrap";
 export default function CadastroInteresse({ CreateInterest }) {
     const [Interest, setInterest] = useState(true);
     const [InterestTitle, setInterestTitle] = useState('');
-    const [Available, setAvailable] = useState('');
+    const [Available, setAvailable] = useState('Segunda-Feira');
     const [Description, setDescription] = useState('');
+    const [toast, setToast] = useState('');
 
     const _storage = window.localStorage;
     const getID = _storage.getItem('id');
@@ -35,15 +37,18 @@ export default function CadastroInteresse({ CreateInterest }) {
                 user: getID
             }
         });
+      
+       
 
         if (response && response.status === 200)
-            alert('Cadastrado com Sucesso');
+        toast.show({severity: 'success', summary: 'Sucesso', detail: 'Interesse cadastrado com sucesso !'})
         else
-            alert('Erro:' + response.error);
+        toast.show({severity: 'error', summary: 'Erro ', detail: 'Falha ao cadastrar o interesse !'})
 
     }
     return (
         <div className="bckgrnd-principal position-relative h-100">
+             <Growl ref={(el) => setToast(el)} />
             <div className="container feed__container">
                 <Menu></Menu>
                 <div className="feed-container text-white">
@@ -70,7 +75,7 @@ export default function CadastroInteresse({ CreateInterest }) {
                                         name="interesse"
                                         placeholder={Interest ? 'Exp.:Matemática, História, Programação' : 'Algebra, Futebol, JavaScript...'}
                                         defaultValue=""
-                                        onChange={(e) => { debugger; setInterestTitle(e.target.value) }}
+                                        onChange={(e) => { setInterestTitle(e.target.value) }}
                                     />
                                 </Form.Group>
                                 <Form.Group className="p-4" as={Col} md="12">
